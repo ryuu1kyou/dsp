@@ -9,6 +9,11 @@ nextFlex(nextFlex_idx) = -1;
 vssUpDown = motion(1,16);
  
 sei
+ openlist  ... zeros(1,State.motionEnd - State.motionInd + 1)
+closelist ...   searchValue OpenIndexValue(hashValue(State.tableParent_Motion),State);
+
+nextFlex, 1) ~= 0
+
 motion_data = [ nextFlex(mind, :) zeros(1,State.motionEnd - State.motionInd + 1 - length(nextFlex(mind, :)))];
 
 motion_data_idx = find(motion_data==-1);
@@ -17,10 +22,14 @@ motion_data(motion_data_idx) = 2;
 motion_data(end-1) = length(nextFlex(mind, :));
 motion_data(end) = vssUpDownFlag;
 
+else
+   motion_data = zeros(1,State.motionEnd - State.motionInd + 1);
+    motion_data(end) = vssUpDownFlag;
+ 
 
   if findFlag == 1 
           openList(targetInd, State.motionInd:State.motionEnd) = motion_data;
-  elseif findFlag == 2 
+  els findFlag == 2 
           closeList(targetInd, State.motionInd:State.motionEnd) = motion_data;
       end
   else
@@ -29,5 +38,4 @@ motion_data(end) = vssUpDownFlag;
 
 .motionInd = State.childIndexInd+1;
 .motionEnd = State.childIndexInd+State.node_MAX;
-.tableParent_Motion = 3;
-.tableChild_Motion = 6;
+.table_Motion = 5;
