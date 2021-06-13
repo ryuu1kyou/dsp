@@ -39,3 +39,7 @@ else
 .motionInd = State.childIndexInd+1;
 .motionEnd = State.childIndexInd+State.node_MAX;
 .table_Motion = 5;
+
+if beforeVector(1,State.extraInd+extraLoop-1)==3 &&  afterVector(1,State.extraInd+extraLoop-1)==0
+if beforeVector(1,14)==3 &&  afterVector(1,State.extraInd+extraLoop-1)==0  optimalRowInd 187460
+
