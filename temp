@@ -143,3 +143,45 @@ end
         nextNodeNumberVector
         nextNodeNumberVector2
     end
+
+    tmpCol2 = cell2mat(State.baseNode(:,2));
+    col_min_val = min(tmpCol2);
+    col_max = 1 - min(tmpCol2) + 1;
+    tmp_str_base = '';
+     for i = 1:col_max
+        tmp_str_base = [tmp_str_base '.'];
+     end
+        
+    tmpCol3 = cell2mat(State.baseNode(:,3));
+    row_max = max(tmpCol3) - min(tmpCol3) + 1;
+   
+    for i = row_max:-1:1
+        tmp_str = tmp_str_base;
+        for j = 1:col_max
+            for k = 1:size(State.baseNode,1)
+                if State.baseNode{k,3} == i && State.baseNode{k,4} ~= 0 && State.baseNode{k,2} == j + col_min_val - 1
+                    tmp_str(j) = num2str(Node(1,State.baseNode{k,4}));
+                end
+            end
+        end
+        if isequal(Node(1, State.vssInpUpInd), 0) && i == row_max
+            tmp_str(State.pre_MAX+1) = 'I';
+        end
+        if isequal(Node(1, State.vssInpUpInd), 0) && i == 1
+            tmp_str(State.pre_MAX+2) = 'E';
+        end
+        if isequal(Node(1, State.vssInpUpInd), 1) && i == row_max
+            tmp_str(State.pre_MAX+2) = 'E';
+        end
+        if isequal(Node(1, State.vssInpUpInd), 1) && i == 1
+            tmp_str(State.pre_MAX+1) = 'I';
+        end
+        fprintf('%s\n', tmp_str);
+        
+        tmp_str3 = [];
+        for m = 1:length(tmp_str)
+            tmp_str3 = [tmp_str3 tmp_str(m) ','];
+        end
+        tmp_str3(end) = [];
+       
+    end    
