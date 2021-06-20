@@ -101,7 +101,9 @@ end
         if ~isempty(ind)
             if nodeVector(1, State.vssInpUpInd) == 0
                 if motion(targetNumber) == 1
-                    if ind >= State.extraInd && ind <= State.vssInpUpInd-1
+                    if ind >= State.extraInd && ind <= 16
+%                         nextNodeVector2(1, ind) = 0;
+%                         nextNodeNumberVector2(1, ind) = 0;
                         leave2 = [leave2 nodeVector(1, ind)];
                         leaveNumber2 = [leaveNumber2 nodeNumberVector(1, ind)];
                     else
@@ -117,7 +119,9 @@ end
                 end
             else
                 if motion(targetNumber) == 1
-                    if ind >= State.extraInd && ind <= State.vssInpUpInd-1
+                    if ind >= State.extraInd && ind <= 16
+%                         nextNodeVector2(1, ind) = 0;
+%                         nextNodeNumberVector2(1, ind) = 0;
                         leave2 = [leave2 nodeVector(1, ind)];
                         leaveNumber2 = [leaveNumber2 nodeNumberVector(1, ind)];
                     else
@@ -155,6 +159,8 @@ end
     tmpCol3 = cell2mat(State.baseNode(:,3));
     row_max = max(tmpCol3) - min(tmpCol3) + 1;
    
+    tmp_str2 = [];
+    tmp_str4 = [];
     for i = row_max:-1:1
         tmp_str = tmp_str_base;
         for j = 1:col_max
@@ -176,12 +182,14 @@ end
         if isequal(Node(1, State.vssInpUpInd), 1) && i == 1
             tmp_str(State.pre_MAX+1) = 'I';
         end
-        fprintf('%s\n', tmp_str);
+        tmp_str2 = [tmp_str2 tmp_str newline];
         
         tmp_str3 = [];
         for m = 1:length(tmp_str)
             tmp_str3 = [tmp_str3 tmp_str(m) ','];
         end
         tmp_str3(end) = [];
-       
+        tmp_str4 = [tmp_str4 tmp_str3 newline];
     end    
+    fprintf('%s', tmp_str2);
+    fprintf('%s', tmp_str4);
