@@ -101,7 +101,7 @@ end
         if ~isempty(ind)
             if nodeVector(1, State.vssInpUpInd) == 0
                 if motion(targetNumber) == 1
-                    if ind >= State.extraInd && ind <= 16
+                    if ind >= State.extraInd && ind <= State.vssInpInd - 1
 %                         nextNodeVector2(1, ind) = 0;
 %                         nextNodeNumberVector2(1, ind) = 0;
                         leave2 = [leave2 nodeVector(1, ind)];
@@ -119,7 +119,7 @@ end
                 end
             else
                 if motion(targetNumber) == 1
-                    if ind >= State.extraInd && ind <= 16
+                    if ind >= State.extraInd && ind <= State.vssInpInd - 1
 %                         nextNodeVector2(1, ind) = 0;
 %                         nextNodeNumberVector2(1, ind) = 0;
                         leave2 = [leave2 nodeVector(1, ind)];
